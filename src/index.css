@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*======================
+    404 page
+=======================*/
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: sans-serif;
+
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(/public/assets/notfound.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+@media screen and (max-width: 900px) {
+  .home-div{
+display: flex;
+flex-direction: column;
+  }
+
+ .imgdiv{
+     width: 100%;
+     height: 50vh;
+    display:none;
+ 
+  }
+
+}
+
+
+/* For screens smaller than 640px */
+@media (max-width: 640px) {
+  .flex.items-center.justify-between.px-10 {
+    flex-direction: column; /* Stack items vertically */
+    
+    padding: 1rem; /* Adjust padding */
+    text-align: center; /* Center text */
+  }
+
+  .flex.items-center.justify-between.px-10 > div:first-child {
+    margin-bottom: 1rem; /* Add margin at bottom */
+  }
+
+  .w-40 {
+    width: 50%; /* Adjust image width */
+  }
+
+  .flex.gap-3.font-semibold {
+    flex-direction: column; /* Stack list items vertically */
+    align-items: center; /* Center list items */
+  }
+
+  .bg-red-600.px-2.py-1.rounded-sm.text-white,
+  .bg-blue-500.text-white.px-2.py-1.rounded-md.focus\:outline-none.hover\:bg-blue-600 {
+    width: 100%; /* Full width for buttons */
+    margin-bottom: 0.5rem; /* Add margin between buttons */
+  }
+}
+
+/* For screens between 641px and 1024px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .flex.items-center.justify-between.px-10 {
+    padding: 1rem; /* Adjust padding */
+  }
+
+  .flex.gap-3.font-semibold {
+    flex-direction: row; /* Display list items horizontally */
+  }
+
+  .bg-red-600.px-2.py-1.rounded-sm.text-white,
+  .bg-blue-500.text-white.px-2.py-1.rounded-md.focus\:outline-none.hover\:bg-blue-600 {
+    width: auto; /* Auto width for buttons */
+    margin-left: 0.5rem; /* Add margin between buttons */
+  }
+}
