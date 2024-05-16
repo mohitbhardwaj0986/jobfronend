@@ -65,7 +65,7 @@ function AllApplication() {
               close
             </button>
             <img
-              className="h-screen"
+              className="h-[100%]"
               src={selectedImage}
               alt="Enlarged Image"
             />
