@@ -36,7 +36,7 @@ function PostApplication() {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log(response);
+      
         toast.success(response.data.message);
         setAddress("")
         setCoverLatter('')

@@ -9,7 +9,7 @@ function Home() {
   const navigate = useNavigate();
   const { user } = useUser();
   const { isAuthorized } = useAuth();
-  // console.log(isAuthorized);
+
 
 
   return <div>

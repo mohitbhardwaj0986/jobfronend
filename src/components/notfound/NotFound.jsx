@@ -4,7 +4,7 @@ import { useAuth } from "../../contaxt/authContext";
 
 function NotFound() {
   const { isAuthorized, setIsAuthorized } = useAuth();
-  console.log(isAuthorized);
+
   const navigate = useNavigate()
   return (
     <section className="page_404">

@@ -20,9 +20,9 @@ import JobEdit from "./components/job/JobEdit";
 
 function App() {
   const { isAuthorized, setIsAuthorized } = useAuth();
-  // console.log(isAuthorized);
+
   const { user, setUser } = useUser();
-  // console.log(user);
+
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");

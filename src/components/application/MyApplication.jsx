@@ -9,7 +9,7 @@ function MyApplication() {
   const handleDelete = async (id) => {
     try {
       const deleteApplication = await axios.delete(`/application/delete/${id}`);
-      console.log(deleteApplication);
+
       const newApplicationarr = applications.filter((item) => item._id !== id);
       setApplications(newApplicationarr);
 
