@@ -126,7 +126,7 @@ function Login() {
             <h3 onClick={() => navigate("/register")} className="mb-3 text-blue-600 underline text-center font-semibold cursor-pointer">Register Now</h3>
             <div className="flex justify-center">
               {loading ? (
-                <img className="w-12" src={loadingGif} alt="loading" />
+                <img className="w-12" src={laodinGif} alt="loading" />
               ) : (
                 <button
                   type="submit"
