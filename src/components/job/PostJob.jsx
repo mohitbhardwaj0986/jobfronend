@@ -50,7 +50,8 @@ function PostJob() {
       setSalaryFrom("");
       setSalaryTo("");
       toast.success(data.message);
-      console.log(data);
+
+      
     } catch (error) {
       toast.error(error.response.data.message);
     } finally{setLoading(false)}

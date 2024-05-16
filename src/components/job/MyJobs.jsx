@@ -22,7 +22,8 @@ function MyJobs() {
     const fetchJobs = async () => {
       const { data } = await axios.get("/job/myjobs");
       const { myJobs } = data;
-      console.log(data);
+     
+      
       setMyJobs(myJobs);
     };
     fetchJobs();

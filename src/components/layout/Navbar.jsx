@@ -60,7 +60,7 @@ function Navbar() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-console.log(user);
+
   const logoutHandle = async () => {
     setLoading(true)
     try {

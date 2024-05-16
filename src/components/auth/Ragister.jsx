@@ -11,14 +11,15 @@ const Register = () => {
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const { isAuthorized, setIsAuthorized } = useAuth();
-  console.log(user);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  console.log(isAuthorized);
+
+  
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {

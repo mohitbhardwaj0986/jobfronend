@@ -18,7 +18,8 @@ function JobEdit() {
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    console.log(id);
+  
+    
     try {
       const updatedData = {};
       if (title) updatedData.title = title;

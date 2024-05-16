@@ -14,7 +14,8 @@ function JobDetails() {
         const { data } = await axios.get(`/job/jobdetail/${id}`);
         const job = data.job;
         setJobDetails(job);
-        console.log(job);
+      
+        
       } catch (error) {
         console.log("Error fetching job details:", error);
       }
