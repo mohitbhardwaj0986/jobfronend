@@ -68,7 +68,8 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
+   <>
+   {isAuthorized?(navigate("/")):( <div className="max-w-md mx-auto mt-8">
       <h2 className="text-2xl font-bold mb-4">Register</h2>
       <form onSubmit={handleRegister} className="space-y-4">
         <div>
@@ -154,7 +155,8 @@ const Register = () => {
       </button>}
       </div>
       </form>
-    </div>
+    </div>)}
+   </>
   );
 };
 

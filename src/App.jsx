@@ -41,9 +41,9 @@ function App() {
     <div>
       {user && <Navbar />}
       <Routes>
-      { !user && <Route path="/login" element={<Login />} />}
-      {!user &&  <Route path="/register" element={<Ragister />} />
-}       { isAuthorized && <Route path="/" element={<Home />} />}
+        <Route path="/login" element={<Login />} />
+       <Route path="/register" element={<Ragister />} />
+     { isAuthorized && <Route path="/" element={<Home />} />}
        {isAuthorized && <Route path="/job/getall" element={<Jobs />} />}
         {isAuthorized &&<Route path="/job/:id" element={<JobDetails />} />}
         {isAuthorized &&<Route path="/job/post" element={<PostJob />} />}

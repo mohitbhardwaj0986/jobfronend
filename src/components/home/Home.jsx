@@ -10,10 +10,7 @@ function Home() {
   const { user } = useUser();
   const { isAuthorized } = useAuth();
   // console.log(isAuthorized);
-// useEffect(()=>{
 
-//   !isAuthorized &&  navigate("login")
-// })
 
   return <div>
     <HeroSection/>

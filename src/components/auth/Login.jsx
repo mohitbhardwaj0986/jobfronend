@@ -15,16 +15,7 @@ function Login() {
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    const storedIsAuthorized = localStorage.getItem("isAuthorized");
-    if (storedIsAuthorized === "true") {
-      setIsAuthorized(true);
-    }
-  }, [setUser, setIsAuthorized]);
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -60,76 +51,95 @@ function Login() {
       setLoading(false); 
     }
   };
+  useEffect(() => {
+
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    const storedIsAuthorized = localStorage.getItem("isAuthorized");
+    if (storedIsAuthorized === "true") {
+      setIsAuthorized(true);
+    }
+  }, [setUser, setIsAuthorized]);
 
   return (
-    <div className="flex justify-center">
-    <form onSubmit={handleLogin} className="w-full max-w-sm mt-8">
-      <div className="mb-6">
-        <label
-          htmlFor="email"
-          className="block mb-2 text-sm font-bold text-gray-700"
-        >
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          placeholder="Enter your email"
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="password"
-          className="block mb-2 text-sm font-bold text-gray-700"
-        >
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          placeholder="Enter your password"
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="role"
-          className="block mb-2 text-sm font-bold text-gray-700"
-        >
-          Role
-        </label>
-        <select
-          id="role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          required
-        >
-          <option value="">Select a role</option>
-          <option value="Employer">Employer</option>
-          <option value="job seeker">job seeker</option>
-        </select>
-      </div>
-      <h3 onClick={()=>navigate("/register")} className="mb-3 text-blue-600 underline text-center font-semibold cursor-pointer">Register Now</h3>
-      <div className=" flex justify-center">
-      {loading? <img className="w-12 " src={laodinGif} alt="loading" /> :<button
-        type="submit"
-        className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-      >
-     Submit
-      </button>}
-      </div>
-    </form>
-  
-  </div> 
-  
+    <>
+      {isAuthorized ? (
+        navigate("/")
+      ) : (
+        <div className="flex justify-center">
+          <form onSubmit={handleLogin} className="w-full max-w-sm mt-8">
+            <div className="mb-6">
+              <label
+                htmlFor="email"
+                className="block mb-2 text-sm font-bold text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-bold text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="role"
+                className="block mb-2 text-sm font-bold text-gray-700"
+              >
+                Role
+              </label>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                required
+              >
+                <option value="">Select a role</option>
+                <option value="Employer">Employer</option>
+                <option value="job seeker">job seeker</option>
+              </select>
+            </div>
+            <h3 onClick={() => navigate("/register")} className="mb-3 text-blue-600 underline text-center font-semibold cursor-pointer">Register Now</h3>
+            <div className="flex justify-center">
+              {loading ? (
+                <img className="w-12" src={loadingGif} alt="loading" />
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                >
+                  Submit
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+      )}
+    </>
   );
 }
 
