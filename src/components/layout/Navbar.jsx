@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "../../axios/axios";
 import { useAuth } from "../../contaxt/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../src/assets/logo.jpeg";
 import { useUser } from "../../contaxt/userContaxt";
+import laodinGif from "../../assets/loading.gif"
 
 function Navbar() {
   const EmployerNavLi = [
@@ -58,8 +59,10 @@ function Navbar() {
   const { isAuthorized, setIsAuthorized } = useAuth();
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 console.log(user);
   const logoutHandle = async () => {
+    setLoading(true)
     try {
       const response = await axios.get("/user/logout");
       toast.success(response.data.message);
@@ -70,6 +73,8 @@ console.log(user);
       navigate("/login");
     } catch (error) {
       toast.error(error.response.data.message);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -104,12 +109,15 @@ console.log(user);
                 </li>
               ))}
           {isAuthorized && (
-            <button
-              className="bg-blue-500 text-white px-2 py-1 rounded-md focus:outline-none hover:bg-blue-600"
-              onClick={() => logoutHandle()}
+            <div className=" flex justify-center">
+            {loading? <img className="w-12 " src={laodinGif} alt="loading" /> :<button
+              type="submit"
+              className="w-full px-2 py-1 text-white text-sm bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            onClick={() => logoutHandle()}
             >
-              logout
-            </button>
+           Logout
+            </button>}
+            </div>
           )}
         </ul>
       </div>

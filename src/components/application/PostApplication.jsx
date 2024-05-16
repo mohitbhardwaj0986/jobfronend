@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../axios/axios"; // Make sure to import axios from the correct path
 import toast from "react-hot-toast";
-
+import laodinGif from "../../assets/loading.gif"
 function PostApplication() {
   const { id } = useParams();
 
@@ -12,13 +12,14 @@ function PostApplication() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [resume, setResume] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const handleFileChange = (e) => {
     setResume(e.target.files[0]);
   };
 
   const handleForm = (e) => {
     e.preventDefault();
+    setLoading(true);
     const data = new FormData();
     data.append("name", name);
     data.append("email", email);
@@ -45,6 +46,8 @@ function PostApplication() {
         setResume(null)
       } catch (error) {
         toast.error(error.response.data.message);
+      }  finally {
+        setLoading(false); 
       }
     };
 
@@ -150,14 +153,14 @@ function PostApplication() {
           />
         </div>
 
-        <div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
-          >
-            Submit
-          </button>
-        </div>
+        <div className=" flex justify-center">
+      {loading? <img className="w-12 " src={laodinGif} alt="loading" /> :<button
+        type="submit"
+        className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+      >
+     Submit
+      </button>}
+      </div>
       </form>
     </div>
   );

@@ -4,8 +4,10 @@ import axios from "../../axios/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../../contaxt/authContext";
 import { useNavigate } from "react-router-dom";
+import laodinGif from "../../assets/loading.gif"
 
 const Register = () => {
+  const [loading , setLoading] = useState(false)
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const { isAuthorized, setIsAuthorized } = useAuth();
@@ -30,6 +32,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const { data } = await axios.post("/user/register", {
         name,
@@ -52,13 +55,15 @@ const Register = () => {
       toast.success(data.message);
       setIsAuthorized(true);
       localStorage.setItem("isAuthorized", "true");
-
+      
       navigate("/");
     } catch (error) {
       toast.error(error.response.data.message);
       setIsAuthorized(false);
       localStorage.removeItem("isAuthorized");
       localStorage.removeItem("user");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -140,12 +145,14 @@ const Register = () => {
         >
           Existing user
         </h3>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-        >
-          Register
-        </button>
+        <div className=" flex justify-center">
+      {loading? <img className="w-12 " src={laodinGif} alt="loading" /> :<button
+        type="submit"
+        className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+      >
+     Register
+      </button>}
+      </div>
       </form>
     </div>
   );

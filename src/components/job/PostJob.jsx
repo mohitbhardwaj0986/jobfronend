@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "../../axios/axios";
 import toast from "react-hot-toast";
+import laodinGif from "../../assets/loading.gif"
 
 function PostJob() {
   const [title, setTitle] = useState("");
@@ -13,9 +14,11 @@ function PostJob() {
   const [salaryFrom, setSalaryFrom] = useState("");
   const [salaryTo, setSalaryTo] = useState("");
   const [option, setOption] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const data = await axios.post(
         "/job/post",
@@ -50,7 +53,7 @@ function PostJob() {
       console.log(data);
     } catch (error) {
       toast.error(error.response.data.message);
-    }
+    } finally{setLoading(false)}
   };
 
   return (
@@ -201,14 +204,14 @@ function PostJob() {
             </div>
           )}
         </div>
-        <div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
-          >
-            Submit
-          </button>
-        </div>
+        <div className=" flex justify-center">
+      {loading? <img className="w-12 " src={laodinGif} alt="loading" /> :<button
+        type="submit"
+        className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+      >
+     Submit
+      </button>}
+      </div>
       </form>
     </div>
   );
